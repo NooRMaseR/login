@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [os.getenv("DJANGO_ALLOWED_HOSTS")]
+ALLOWED_HOSTS = [os.getenv("DJANGO_ALLOWED_HOSTS", "*")]
 
 
 # Application definition
@@ -42,7 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core_login',
-    'django_smart_ratelimit'
+    # 'django_smart_ratelimit'
 )
 
 MIDDLEWARE = (
@@ -54,7 +54,7 @@ MIDDLEWARE = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_smart_ratelimit.middleware.RateLimitMiddleware'
+    # 'django_smart_ratelimit.middleware.RateLimitMiddleware'
 )
 
 PASSWORD_HASHERS = (
@@ -65,14 +65,14 @@ PASSWORD_HASHERS = (
     'django.contrib.auth.hashers.ScryptPasswordHasher',
 )
 
-RATELIMIT_MIDDLEWARE = {
-    'DEFAULT_RATE': '20/m',
-    'RATE_LIMITS': {
-        # '/admin/': '10/h',
-    }
-}
+# RATELIMIT_MIDDLEWARE = {
+#     'DEFAULT_RATE': '20/m',
+#     'RATE_LIMITS': {
+#         # '/admin/': '10/h',
+#     }
+# }
 
-RATELIMIT_BACKEND = 'database'
+# RATELIMIT_BACKEND = 'database'
 
 ROOT_URLCONF = 'login.urls'
 AUTH_USER_MODEL = "core_login.UserTest"
@@ -100,13 +100,17 @@ WSGI_APPLICATION = 'login.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("DB_NAME"),
-        'USER': os.getenv("DB_USER"),
-        'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': os.getenv("DB_HOST"),
-        'OPTIONS': {'sslmode': 'require'},
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / "db.sqlite3",
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': os.getenv("DB_NAME"),
+    #     'USER': os.getenv("DB_USER"),
+    #     'PASSWORD': os.getenv("DB_PASSWORD"),
+    #     'HOST': os.getenv("DB_HOST"),
+    #     'OPTIONS': {'sslmode': 'require'},
+    # }
 }
 
 
