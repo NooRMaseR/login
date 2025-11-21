@@ -1,0 +1,7 @@
+argon2-cffi==25.1.0
+django==5.2.7
+django-smart-ratelimit==0.8.11
+gunicorn==23.0.0
+python-dotenv==1.2.1
+whitenoise==6.11.0
+psycopg2-binary==2.9.11

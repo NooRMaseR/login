@@ -1,0 +1,20 @@
+[project]
+name = "login"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "argon2-cffi>=25.1.0",
+    "django>=5.2.7",
+    "django-smart-ratelimit>=0.8.11",
+    "gunicorn>=23.0.0",
+    "psycopg2-binary>=2.9.11",
+    "python-dotenv>=1.2.1",
+    "whitenoise>=6.11.0",
+]
+
+[dependency-groups]
+dev = [
+    "waitress>=3.0.2",
+]
